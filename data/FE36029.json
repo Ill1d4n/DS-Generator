@@ -1,0 +1,206 @@
+{
+    "dieNumber": "FE36029",
+    "increments": [
+        {
+            "index": 0,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 0.5,
+                    "gaugeRight": 1.3,
+                    "kind": "treadPlyInsert"
+                }
+            ]
+        },
+        {
+            "index": 1,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 1.3,
+                    "gaugeRight": 1.6,
+                    "kind": "treadPlyInsert"
+                }
+            ]
+        },
+        {
+            "index": 2,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 1.6,
+                    "gaugeRight": 2,
+                    "kind": "treadPlyInsert"
+                }
+            ]
+        },
+        {
+            "index": 3,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 2,
+                    "gaugeRight": 2.5,
+                    "kind": "treadPlyInsert"
+                }
+            ]
+        },
+        {
+            "index": 4,
+            "width": 7,
+            "layers": [
+                {
+                    "gaugeLeft": 2.5,
+                    "gaugeRight": 0,
+                    "kind": "treadPlyInsert"
+                },
+                {
+                    "gaugeLeft": 0,
+                    "gaugeRight": 2.5,
+                    "kind": "sidewall"
+                }
+            ]
+        },
+        {
+            "index": 5,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 2.5,
+                    "gaugeRight": 2.5,
+                    "kind": "sidewall"
+                }
+            ]
+        },
+        {
+            "index": 6,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 2.5,
+                    "gaugeRight": 2.5,
+                    "kind": "sidewall"
+                }
+            ]
+        },
+        {
+            "index": 7,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 2.5,
+                    "gaugeRight": 2.5,
+                    "kind": "sidewall"
+                }
+            ]
+        },
+        {
+            "index": 8,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 2.5,
+                    "gaugeRight": 2.7,
+                    "kind": "sidewall"
+                }
+            ]
+        },
+        {
+            "index": 9,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 2.7,
+                    "gaugeRight": 3.2,
+                    "kind": "sidewall"
+                }
+            ]
+        },
+        {
+            "index": 10,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 0,
+                    "gaugeRight": 1.1,
+                    "kind": "abrasion"
+                },
+                {
+                    "gaugeLeft": 3.2,
+                    "gaugeRight": 2.9,
+                    "kind": "sidewall"
+                }
+            ]
+        },
+        {
+            "index": 11,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 1.1,
+                    "gaugeRight": 2.1,
+                    "kind": "abrasion"
+                },
+                {
+                    "gaugeLeft": 2.9,
+                    "gaugeRight": 1.9,
+                    "kind": "sidewall"
+                }
+            ]
+        },
+        {
+            "index": 12,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 2.1,
+                    "gaugeRight": 3,
+                    "kind": "abrasion"
+                },
+                {
+                    "gaugeLeft": 1.9,
+                    "gaugeRight": 0,
+                    "kind": "sidewall"
+                }
+            ]
+        },
+        {
+            "index": 13,
+            "width": 9,
+            "layers": [
+                {
+                    "gaugeLeft": 3,
+                    "gaugeRight": 2.2,
+                    "kind": "abrasion"
+                }
+            ]
+        },
+        {
+            "index": 14,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 2.2,
+                    "gaugeRight": 1.8,
+                    "kind": "abrasion"
+                }
+            ]
+        },
+        {
+            "index": 15,
+            "width": 5,
+            "layers": [
+                {
+                    "gaugeLeft": 1.8,
+                    "gaugeRight": 0.5,
+                    "kind": "abrasion"
+                }
+            ]
+        }
+    ],
+    "kindCompounds": {
+        "sidewall": "W62",
+        "treadPlyInsert": "U37",
+        "abrasion": "H21"
+    }
+}

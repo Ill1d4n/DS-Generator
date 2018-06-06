@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>
+			DieShape Generator
+		</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+      <!-- Load the Paper.js library -->
+
+        <script type="text/javascript" src="js/paper-full.js"></script>
+        <!-- Load external PaperScript and associate it with myCanvas -->
+        <script type="text/paperscript" src="js/myScript.js" canvas="myCanvas" text="DieNumber"></script>
+		 <!-- Costruction function that allow to create the DieShape -->
+		<script language="Javascript" type="text/javascript" > 
+		var filename = "C:/inetpub/wwwroot/WWW/paperjs-demo_scuola/data/Newfile.json"; 
+		function Main()
+		{
+			WriteToFile(); 
+			ReadFromFile();
+		}
+		
+				
+		function WriteToFile() 
+        { 
+		var NomeDie=document.getElementById("DieNumber").value;
+		var index=0;
+		//errore sul get element da risolvere
+		var width=document.getElementById("width").value;
+		var gaugeLeft=document.getElementById("gaugeLeft").value;
+		var gaugeRight=document.getElementById("gaugeRight").value;
+		var kind=document.getElementById("kind").value;	
+		filename = "C:/inetpub/wwwroot/WWW/paperjs-demo_scuola/data/"+NomeDie+".json"; 	
+			var fso = new ActiveXObject("Scripting.FileSystemObject"); 
+			
+			if (fso.FileExists(filename)) 
+			{ 
+				var  ForAppending, file; 
+				ForAppending = 8; 
+				file = fso.OpenTextFile(filename, ForAppending, false);
+				file.Write('"dieNumber" : "'+NomeDie+'",\n "increments" : [\n {\n "index" : '+index+',\n "width" : '+width+',\n "layers" : [\n {\n"gaugeLeft" : '+gaugeLeft+',\n"gaugeRight" : '+gaugeRight+',\n"kind" : "'+kind+'"}]\n}');				
+				index++;
+			} 
+			else 
+			{ 
+				var file = fso.CreateTextFile(filename, true); 
+				file.Write(',{\n "index" : '+index+',\n "width" : '+width+',\n "layers" : [\n {\n"gaugeLeft" : '+gaugeLeft+',\n"gaugeRight" : '+gaugeRight+',\n"kind" : "'+kind+'"}]\n}');	
+				index++;
+			} 
+		file.Close(); 
+        } 
+		function ReadFromFile()
+		{ 
+			var fso, file, ForReading;			
+			ForReading = 5; 
+			fso = new ActiveXObject("Scripting.FileSystemObject"); 
+			file = fso.OpenTextFile(filename, ForReading, false);
+			var output=fso.ReadAll();
+			document.getElementById("par").InnerHTML=output;		
+			file.Close(); 
+		} 
+		</script>
+		<script>
+		function Selection()
+		{
+			var indice=document.getElementById("kind").selectedIndex;
+			if(indice=='0')
+			{
+			document.getElementById("imagecolour").innerHTML='<img id="imagecolour" src="Image/7.png">';
+			document.getElementById("imagecolour").innerHTML ='<img src=x.png width ="55" height = "55">'
+			}
+			if(indice=='1')
+			{
+			document.getElementById("imagecolour").innerHTML='<img id="imagecolour" src="Image/5.png">';
+					
+			}
+			if(indice=='2')
+			{
+			document.getElementById("imagecolour").innerHTML='<img id="imagecolour" src="Image/3.png">';
+			}
+			if(indice=='3')
+			{
+			document.getElementById("imagecolour").innerHTML='<img id="imagecolour" src="Image/4.png">';
+			}
+			if(indice=='4')
+			{
+			document.getElementById("imagecolour").innerHTML='<img id="imagecolour" src="Image/6.png">';
+			}
+		}
+		</script> 
+    </head>
+	<body background="./Image/1.jpg">
+	<center><p id="title">DieShape Generator</p></center>
+		<!-- Body structure -->
+		<table id="table"border = '2' >
+		<tr >
+			<td ><center>Die Number:</td>
+			<td><input type="text" id="DieNumber"></td>
+			<td rowspan='6'> <canvas  id="myCanvas" resize></canvas></td>
+		</tr>
+		<tr>
+			<td><center>Width:</td>
+			<td><input type="number" id="width"></td>
+		</tr>
+		<tr>
+			<td><center>Gauge Left:</td>
+			<td><input type="number" id="gaugeLeft"></td>
+		</tr>
+		<tr>
+			<td><center>Gauge Right:</td>
+			<td><input type="number" id="gaugeRight"></td>
+		</tr>
+		<tr>
+			<td id="lista" >
+			<select id="kind" align=center>
+				<option selected>Colour selection</option>
+				<option value="Uno">Red - Cap</option>
+				<option value="Due">Green - Wing</option>
+				<option value="Tre">Blue - Sidewall/Base</option>
+				<option value="Quattro">Yellow - Undertread</option>
+			</select> 			
+			</td>
+			<td>
+				<img id="imagecolour" src="Image/7.png">
+			</td>
+		</tr>
+		<tr>
+			<td colspan='2'><input type="button" id="generator" name="generator" value="Generate" onclick="Main()"></td>
+		</tr>
+		<input type="button" onclick="Selection()">
+		</table>
+	
+    </body>
+</html>

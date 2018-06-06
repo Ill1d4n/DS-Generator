@@ -1,0 +1,216 @@
+<html>
+	<head>
+		<title> HomePage </title>
+		<link href="./css/stile.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="js/paper-full.js"></script>		
+		<script type="text/paperscript" src="js/myScript.js" canvas="myCanvas"></script>
+		<script language="Javascript" type="text/javascript">
+		function Apri()
+		{
+			document.getElementById("open").style.visibility="visible";
+			document.getElementById("new").style.visibility="hidden";
+		}
+		function Crea()
+		{
+			document.getElementById("open").style.visibility="hidden";
+			document.getElementById("new").style.visibility="visible";
+		}
+		function Selection()
+		{
+			var indice=document.getElementById("kind").selectedIndex;
+			if(indice==0)
+			{
+			var a="Image/7.png";
+			document.getElementById("image").src=a;
+			}
+			if(indice==1)
+			{
+			var b="Image/5.png";
+			document.getElementById("image").src=b;					
+			}
+			if(indice==2)
+			{
+			var c="Image/3.png";
+			document.getElementById("image").src=c;
+			}
+			if(indice==3)
+			{
+			var d="Image/4.png";
+			document.getElementById("image").src=d;
+			}
+			if(indice==4)
+			{
+			var e="Image/6.png";
+			document.getElementById("image").src=e;
+			}
+		}
+		
+		//management of the files
+		var filename="";
+		var index=0;
+		function WriteToFile() 
+        {	
+		var NomeDie=document.getElementById("DieNumber").value;		
+		var width=document.getElementById("width").value;
+		var gaugeLeft=document.getElementById("gaugeLeft").value;
+		var gaugeRight=document.getElementById("gaugeRight").value;
+		var kind=document.getElementById("kind").value;	
+		var sublayer=document.getElementById("sublayer").value;
+		// errors control
+		var error=0;
+		while(((NomeDie=="")||(NomeDie=="undefined"))||((width=="")||(width=="undefined"))||((gaugeLeft=="")||(gaugeLeft=="undefined"))||((gaugeRight=="")||(gaugeRight=="undefined"))||((sublayer=="")||(sublayer>3)||(sublayer=="undefined")))
+		{
+			if((NomeDie=="")||(NomeDie=="undefined"))
+			{
+				NomeDie=prompt("Insert the Die Number:");
+				document.getElementById("DieNumber").value=NomeDie;
+			}
+			if((width=="")||(width=="undefined"))
+			{
+				width=prompt("Insert width:");
+				document.getElementById("width").value=width;			
+			}
+			if((gaugeLeft=="")||(gaugeLeft=="undefined"))
+			{
+				gaugeLeft=prompt("Insert gaugeLeft:");
+				document.getElementById("gaugeLeft").value=gaugeLeft;
+				
+			}
+			if((gaugeRight=="")||(gaugeRight=="undefined"))
+			{
+				gaugeRight=prompt("Insert gaugeRight:");
+				document.getElementById("gaugeRight").value=gaugeRight;	
+			}
+			if((sublayer=="")||(sublayer>3)||(sublayer=="undefined"))
+			{
+				sublayer=prompt("Insert sublayer:");
+				document.getElementById("sublayer").value=sublayer;
+			}
+			
+		}
+		if(kind=="Colour selection")
+			{
+				error=1;
+				alert("- Error: unable to identify the kind of the shape -");
+			}
+		//risolvere
+		
+		if(error==0)
+		  {
+			filename = "C:/inetpub/wwwroot/WWW/FinalProject/data/"+NomeDie+".json"; 	 		 	
+			var fso = new ActiveXObject("Scripting.FileSystemObject");
+			if (fso.FileExists(filename)) 
+			{ 				
+				var  ForAppending, file; 
+				ForAppending = 8; 
+				file = fso.OpenTextFile(filename, ForAppending, false);
+				//first sublevel
+				file.Write(',{\n "index" : "'+index+'",\n "width" : '+width+',\n "layers" : [\n {\n"gaugeLeft" : '+gaugeLeft+',\n"gaugeRight" : '+gaugeRight+',\n"kind" : "'+kind+'"}\n');
+				sublayer=sublayer-1;
+				while(sublayer!=0)
+				{
+					alert("ok");
+					var array=[0,0,0];
+					//second/third sublevel;
+					array[0]=prompt("Insert gaugeLeft:");
+					document.getElementById("gaugeLeft").value=array[0];		
+					array[1]=prompt("Insert gaugeRight:");
+					document.getElementById("gaugeRight").value=array[1];
+					array[2]=prompt("Insert kind:");
+					file.Write(',{\n"gaugeLeft" : '+array[0]+',\n"gaugeRight" : '+array[1]+',\n"kind" : "'+array[2]+'"}\n');			
+					if((sublayer==1)||(sublayer==0))
+					{
+					
+						file.Write("]}");						
+					}
+					sublayer=sublayer-1;
+				}				
+				index=index+1;
+				alert(index);
+			}
+			else 
+			{ 					
+				var file = fso.CreateTextFile(filename, true);			
+				alert("file creato");
+				file.Write('{"dieNumber" : "'+NomeDie+'",\n "increments" : [\n {\n "index" : "'+index+'",\n "width" : '+width+',\n "layers" : [\n {\n"gaugeLeft" : '+gaugeLeft+',\n"gaugeRight" : '+gaugeRight+',\n"kind" : "'+kind+'"}]\n}');
+				index=index+1;
+			}	
+			file.Close(); 	
+		}
+		}
+		function Finish()
+		{
+			alert("File was saved into: "+filename);
+			var ForAppending=8;
+			var fso = new ActiveXObject("Scripting.FileSystemObject");
+			file = fso.OpenTextFile(filename, ForAppending, false);
+			file.Write('],"kindCompounds": {"undertread": "","cap": "","wing": "","base": "","sidewall": "","treadPlyInsert": "","abrasion": ""}}');	
+			file.Close();
+		}	
+		</script>
+	</head>
+	
+	<body background="./Image/1.jpg">
+		<div id="header"> <center>
+		<p style="font-size:40; font-family:Nightwraith"> Die Shape Generator </p>
+		</div> </center>
+		
+		<div id="buttons"> <center>
+			<button id="button" onClick="Apri()"> Open a file </button>
+			<button id="button" onClick="Crea()"> New file </button>
+		</center> </div>
+		
+		<form id="form" action="homepage_open.html">
+		<table id="open" style="visibility:hidden">
+		<tr>
+			<td align=right><input type="file" id="sfoglia" name="sfoglia" value="Choose"></td>
+			<td>
+			</td>
+			<td rowspan='6'> <canvas  id="myCanvas" resize></canvas></td>
+
+		<tr>
+			<td><input type="button" id="generator" name="generator" value="Load" onclick=" javascript: document.getElementById('form').submit();"></td>			
+		</tr>
+		</table>
+		
+		
+		<table id="new" style="visibility:hidden">
+		<tr>
+			<td align=right>Die Number: <input type="text" id="DieNumber"></td>
+			<td>
+			</td>
+			<td rowspan='6'> <canvas  id="myCanvas" name="myCanvas" resize></canvas></td>
+		</tr>
+		<tr>
+			<td align=right>Width: <input type="number" id="width"></td>
+		</tr>
+		<tr>
+			<td align=right>Gauge Left: <input type="number" id="gaugeLeft"></td>
+		</tr>
+		<tr>
+			<td align=right>Gauge Right: <input type="number" id="gaugeRight"></td>
+		</tr>
+		<tr>
+			<td align=right>SubLayers: <input type="number" id="sublayer"></td>
+		</tr>
+		<tr>
+			<td id="lista" align=right valign=middle>
+			<select id="kind" onclick="Selection()">
+				<option selected>Colour selection</option>
+				<option value="Uno">Red - Cap</option>
+				<option value="Due">Green - Wing</option>
+				<option value="Tre">Blue - Sidewall/Base</option>
+				<option value="Quattro">Yellow - Undertread</option>
+			</select>				
+			<img valign= 'bottom'; id="image" src="Image/7.png">
+			</td>
+		</tr>
+		<tr>
+			<td><input type="button" id="generator" name="generator" value="Generate" onclick="WriteToFile()"></td>			
+		</tr>
+		<tr>
+		<td><input type="button" id="finish" name="finish" value="Finish" onclick="Finish()"></td>
+		</tr>
+		</table>
+		</form>
+</html>

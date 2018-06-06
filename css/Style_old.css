@@ -1,0 +1,79 @@
+body
+{
+	font-family:arial;
+	font-size:25px;
+}
+#title
+{
+	font-family:arial;
+	font-size:30px;
+}
+#myCanvas
+{
+	width:auto;
+	height:300px;
+	background-image:url(../Image/2.png);
+	background-size:100% 100%;
+}
+#table
+{
+	margin-left:auto;
+    margin-right:auto;
+	width:60%;
+	height:170px;
+	background-color:grey;
+	background-size:100% 100%;
+}
+#generator
+{
+	width:100%;
+	height:100%
+	font-family:arial;
+	font-size:40px;
+	background-color: red;
+}
+#DieNumber
+{
+	width:100%;
+	height:100%;
+}
+
+#width
+{
+	width:100%;
+	height:100%
+	
+}
+#lista
+{
+	margin-left:auto;
+    margin-right:auto;
+	size:18px;
+	width:100%;
+	height:100%
+	
+}
+#gaugeLeft
+{
+	width:100%;
+	height:100%
+}
+#gaugeRight
+{
+	width:100%;
+	height:100%
+}
+#kind
+{
+	margin-left:auto;
+    margin-right:auto;
+	size:18px;
+	width:80%;
+	height:80%;
+}
+
+#imagecolour
+{
+	width:85px;
+	height:80px;
+}
